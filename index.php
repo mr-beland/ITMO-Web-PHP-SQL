@@ -22,7 +22,7 @@ function view($data){
     extract($data);
     $title = '<h1>'. $data['title'] . '</h1>';
     ob_start();
-       @include 'form_login.tpl';
+       @include 'upload_form.tpl';
     $form = ob_get_contents();
     ob_get_clean();
     return $title. $form;

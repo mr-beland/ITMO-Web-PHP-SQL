@@ -1,20 +1,64 @@
 <?php
-// Файл аутентификации
 //todo: Дописать загрузку пользователей из файла
-$filename = 'password.txt';
-$_login = 'admin';
-$_passwd = '123';
-var_dump($_POST['login']);
-
+require_once "config.php";
 $login = $_POST['login'] ;
 $passwd = $_POST['passwd'];
+checkPass($login, $passwd);
 
-if ($_login === $login  && $_passwd === $passwd ) {
-    echo "Вы прошли аутентификацию!";
-}  else {
-    header("HTTP/1.1 403 Forbidden ");
+function checkPass($login='guest', $passwd="" ){
+    $row = $login . " " . $passwd ."\n";
+    if (isUserExists($login,$passwd )) {
+        echo "Вы прошли аутентификацию!";
+        // todo: Редирект в админку
+    }  else {
+        echo "Вы зарегистрированы!";
+        writePasswordFile($row);
+    }
 }
 
 $content = "$login:" . "$passwd";
-file_put_contents($filename, $content);
+function writePasswordFile($row)
+{
+    global $filePassword;
+    // Check if conf file exist and file is writable. .
+    if (file_exists($filePassword) && is_writable($filePassword)) {
+        $fd = fopen($filePassword , 'a');
+        fwrite($fd, $row);
+        fclose($fd);
+    }
+}
+
+function isUserExists($login, $passwd) {
+   $result =  readPassword();
+   foreach ($result as $value) {
+       var_dump($value);
+      $_login =  $value[0];
+      $_passwd = $value[1];
+      echo "<pre>";
+      var_dump($login, $passwd );
+      var_dump($_login, $_passwd );
+       echo "</pre>";
+       if ($_login == $login  and $_passwd == $passwd ) {
+           return True;
+       }
+   }
+   return False;
+}
+
+function readPassword(){
+    global $filePassword;
+    $lines = file($filePassword);
+    $mass_passwd = [];
+    foreach($lines as $line)
+    {
+        $result = [];
+        $result = explode(" ", $line);
+        $mass_passwd[] = $result;
+    }
+    return $mass_passwd;
+}
+readPassword();
+
+
+
 
