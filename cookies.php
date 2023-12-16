@@ -14,4 +14,4 @@ if (isset($_GET['logout'])  && $_GET['logout'] == 1 ) {
 function logout() {
     $_SESSION['is_auth'] = False;
 }
-session_destroy()
+session_destroy();
