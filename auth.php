@@ -1,5 +1,5 @@
 <?php
-//todo: Дописать загрузку пользователей из файла
+session_start();
 require_once "config.php";
 $login = $_POST['login'] ;
 $passwd = $_POST['passwd'];
@@ -9,10 +9,14 @@ function checkPass($login='guest', $passwd="" ){
     $row = $login . " " . $passwd ."\n";
     if (isUserExists($login,$passwd )) {
         echo "Вы прошли аутентификацию!";
+
+        // Установить сессионную переменную is_auth
+        $_SESSION['is_auth'] = True;
         // todo: Редирект в админку
     }  else {
         echo "Вы зарегистрированы!";
         writePasswordFile($row);
+        // todo: Редирект на логин
     }
 }
 
