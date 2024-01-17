@@ -12,11 +12,11 @@ function checkPass($login='guest', $passwd="" ){
 
         // Установить сессионную переменную is_auth
         $_SESSION['is_auth'] = True;
-        // todo: Редирект в админку
+        //  Редирект в админку
     }  else {
         echo "Вы зарегистрированы!";
         writePasswordFile($row);
-        // todo: Редирект на логин
+        // Редирект на логин
     }
 }
 

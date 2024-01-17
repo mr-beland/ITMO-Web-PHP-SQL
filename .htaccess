@@ -1,0 +1,11 @@
+# устанавливаем кодировку
+AddDefaultCharset utf-8
+
+# разрешаем перенаправление
+RewriteEngine On
+
+# записываем базовую директорию нашего сайта (OSPanel->domains->test1)
+RewriteBase /
+
+# указываем, что все запросы нужно перенаправлять на файл index.php
+RewriteRule ^(.*)$ index.php
