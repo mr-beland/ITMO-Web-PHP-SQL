@@ -17,12 +17,18 @@ require_once "__DIR__/../controllers/PageController.php";
 class PageController
 {
     public function actionIndex() {
-        $res = modelPage();
+        $mdl = new ModelPage();
+        $res = $mdl->getListOfQuestions();
         $res = array('result' => $res);
         echo render($res, 'question_tpl.tpl');
     }
-}
 
+    public function actionCounter() {
+        $mdl = new ModelPage();
+        $res = $mdl->getAllQuestions();
+        echo json_encode($res);
+    }
+}
 
 
 

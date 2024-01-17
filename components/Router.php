@@ -4,7 +4,6 @@
 spl_autoload_register('catch_class');
 $arrInclude = [""];
 
-
 function catch_class($name_class) {
 //    $path = str_replace('\\' , '/', $name_class);
     $controllerFile = ROOT . '/controllers/' . $name_class . '.php';
@@ -12,11 +11,6 @@ function catch_class($name_class) {
         include_once($controllerFile);
     }
 }
-
-
-//$s = new ren();
-//$s->render();
-
 
 class Router
 {
@@ -29,6 +23,7 @@ class Router
             'news' => 'news/index', // actionIndex в NewsController
             'products' => 'product/list', // actionList в ProductController
             'page' => 'page/index',
+            'counter' => 'page/counter',
         );
     }
 
@@ -42,8 +37,6 @@ class Router
                 $segments = explode('/', $path);
                 $controllerName = ucfirst(array_shift($segments) . 'Controller');
                 $actionName = 'action' . ucfirst(array_shift($segments));
-
-                // 4. Подключаем файл класса-контроллера:
 
                 // 5. Создаем объект и вызваем метод (т.е. action)
                 $controllerObject = new $controllerName;

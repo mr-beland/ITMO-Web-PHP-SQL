@@ -9,6 +9,9 @@
 </head>
 <body>
 
+<span>Кол-во вопросов</span>
+<span id="counter">?</span>
+
 <h1>Задай вопрос</h1>
 <div id="container">
     <?php foreach($result as $value): ?>
@@ -22,4 +25,6 @@
     <?php endforeach; ?>
 </div>
 </body>
+<script src="../assets/js/axios.min.js"></script>
+<script src="../assets/js/app.js"></script>
 </html>
