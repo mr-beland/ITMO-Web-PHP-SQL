@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <script src="../assets/js/axios.min.js"></script>
+    <script src="../assets/js/app.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -8,6 +10,7 @@
     <title>Document</title>
 </head>
 <body>
+<span>Кол-во вопросов </span><span id="counter">? </span>
 <h1>Задай вопрос</h1>
 <div id = "contaner">
     <?php foreach($result as $value): ?>
