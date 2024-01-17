@@ -16,7 +16,7 @@ exit;
 
 require_once("__DIR__/../model/ModelIndex.php");
 require_once("__DIR__/../controllers/IndexController.php");
-//require_once("__DIR__/../controllers/LoginController.php");
+require_once("__DIR__/../controllers/LoginController.php");
 require_once("__DIR__/../controllers/UploadController.php");
 require_once("__DIR__/../controllers/PageController.php");
 

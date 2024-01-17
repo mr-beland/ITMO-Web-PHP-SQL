@@ -1,70 +1,51 @@
 <?php
 //todo: Дописать загрузку пользователей из файла
-require_once "config.php";
-$login = $_POST['login'];
-$passwd = $_POST['passwd'];
-checkPass($login, $passwd);
+    require_once "config.php";
 
-function checkPass($login = 'guest', $passwd = "")
-{
-    $row = $login . " " . $passwd . "\n";
-    if (isUserExists($login, $passwd)) {
-        echo "Вы прошли аутентификацию!";
+    $login = $_POST['email'];
+    $pass = $_POST['password'];
+    checkPass($login, $pass);
 
-        $_SESSION['is_auth'] = True;
-        // todo: Редирект в админку
-
-    } else {
-        echo "Вы зарегистрированы!";
-        writePasswordFile($row);
-    }
-}
-
-$content = "$login:" . "$passwd";
-function writePasswordFile($row)
-{
-    global $filePassword;
-    // Check if conf file exist and file is writable. .
-    if (file_exists($filePassword) && is_writable($filePassword)) {
-        $fd = fopen($filePassword, 'a');
-        fwrite($fd, $row);
-        fclose($fd);
-    }
-}
-
-function isUserExists($login, $passwd)
-{
-    $result = readPassword();
-    foreach ($result as $value) {
-        var_dump($value);
-        $_login = $value[0];
-        $_passwd = $value[1];
-        echo "<pre>";
-        var_dump($login, $passwd);
-        var_dump($_login, $_passwd);
-        echo "</pre>";
-        if ($_login == $login and $_passwd == $passwd) {
-            return True;
+    function checkPass($login = 'guest', $pass = "") {
+        $row = $login . " " . $pass . "\n";
+        if (isUserExists($login, $pass)) {
+            echo "Welcome!";
+            // todo: Редирект в админку
+        } else {
+            echo "You are registered!";
+            writePasswordFile($row);
         }
     }
-    return False;
-}
 
-function readPassword()
-{
-    global $filePassword;
-    $lines = file($filePassword);
-    $mass_passwd = [];
-    foreach ($lines as $line) {
-        $result = [];
-        $result = explode(" ", $line);
-        $mass_passwd[] = $result;
+    function writePasswordFile($row) {
+        global $filePassword;
+        // Check if conf file exist and file is writable. .
+        if (file_exists($filePassword) && is_writable($filePassword)) {
+            $fd = fopen($filePassword, 'a');
+            fwrite($fd, $row);
+            fclose($fd);
+        }
     }
-    return $mass_passwd;
-}
 
-readPassword();
+    function readPassword() {
+        global $filePassword;
+        $lines = file($filePassword);
+        $mass_pass = [];
+        foreach ($lines as $line) {
+            $result = explode(" ", $line);
+            $mass_pass[] = $result;
+        }
+        return $mass_pass;
+    }
 
-
-
-
+    function isUserExists($login, $pass) {
+        $result = readPassword();
+        foreach ($result as $value) {
+            $_login = $value[0];
+            $_passwd = trim($value[1]);
+            if ($_login == $login and $_passwd == $pass) {
+                return True;
+            }
+        }
+        return False;
+    }

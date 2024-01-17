@@ -26,7 +26,7 @@
     </div>
 
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form class="space-y-6" action="__DIR__/../page.php" method="POST">
+        <form class="space-y-6" action="__DIR__/../auth.php" method="POST">
             <div>
                 <label
                         for="email"

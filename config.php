@@ -1,4 +1,4 @@
 <?php
 $filePassword = 'password.txt';
-$_login = 'admin';
-$_passwd = '123';
+$_login = 'admin@mail.ru';
+$_passwd = 'asd';
