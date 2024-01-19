@@ -1,23 +1,20 @@
 <?php
+require_once '__DIR__/../lib/DataBase.php';
 
-function modelPage(){
-    //todo: Читает файл в массив
-    $data = Array(
-        Array(
-              'num' => 1,
-              'question' => 'Что такое array?',
-              'status' => true
-            ),
-        Array(
-            'num' => 2,
-            'question' => 'Что такое echo?',
-            'status' => true
-        ),
-        Array(
-            'num' => 3,
-            'question' => 'Что такое print_r?',
-            'status' => true
-        ),
-    );
-    return $data;
+// CRUD, delete, get, put, patch
+
+class ModelPage {
+
+    const SQL_SELECT_ALL_QESTION =  'SELECT a. "comment", u."surname"
+                                        FROM question q, answer a, "user" u, "user" answ_u 
+                                        WHERE  q.id = a.id_question
+                                        AND  q.id_user = u.id
+                                        AND  a.id_user  = answ_u.id ';
+
+    public function getListQuestion () {
+        $db = new DataBase;
+        $data = $db -> getDataBase (ModelPage::SQL_SELECT_ALL_QESTION);
+        // var_dump ($data);
+        return $data;
+    }
 }

@@ -1,0 +1,26 @@
+{
+  "name": "engine",
+  "version": "0.0.1",
+  "description": "Eclectic style framework",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tailwind": "tailwindcss build -i src/assets/main.css -o public/styles.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chertkov-vitaliy/php_winter_2024.git",
+
+  },
+  "keywords": [
+    "php",
+    "tailwind",
+    "vue"
+  ],
+  "author": "Chertkov V.G. & group CDPO ITMO",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/chertkov-vitaliy/php_winter_2024/issues"
+  },
+  "homepage": "https://github.com/chertkov-vitaliy/php_winter_2024#readme"
+}
