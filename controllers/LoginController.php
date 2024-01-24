@@ -1,13 +1,16 @@
 <?php
 
+//    session_start();
+
     require_once "__DIR__/../model/ModelIndex.php";
+    require_once "__DIR__/../model/ModelPage.php";
     require_once "__DIR__/../view/View.php";
 
     class LoginController {
 
         public function actionIndex() {
-            $mdl = new ModelLogin();
-            $res = $mdl->getAllUsers();
-            echo render($res, 'form_login.tpl');
+            //todo: переписать render чтобы параметр $data был опциональным
+            echo render(array(), 'form_login.tpl');
         }
+
     }

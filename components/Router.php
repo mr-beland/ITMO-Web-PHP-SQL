@@ -11,19 +11,15 @@
         }
     }
 
+    $routesPath = ROOT . '/routes.php';
+
     class Router {
 // массив маршрутов
         private $routes;
 
         public function __construct() {
-            $this->routes = array
-            (
-                'news' => 'news/index', // actionIndex в NewsController
-                'products' => 'product/list', // actionList в ProductController
-                'page' => 'page/index',
-                'counter' => 'page/counter',
-                'login' => 'login/index',
-            );
+            global $routesPath;
+            $this->routes = include($routesPath);
         }
 
 // метод будет принимать управление от фронтконтроллера

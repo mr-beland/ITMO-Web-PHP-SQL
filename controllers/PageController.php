@@ -19,7 +19,7 @@
             $mdl = new ModelPage();
             $res = $mdl->getListOfQuestions();
             $res = array('result' => $res);
-            echo render($res, 'question_tpl.tpl');
+            echo render($res, 'page.tpl');
         }
 
         public function actionCounter() {
