@@ -16,7 +16,7 @@ class PageController {
         $mdl = new ModelPage;
         $res = $mdl -> getListQuestion ();
         $res = Array('result' => $res);
-        echo render($res, 'question.tpl');
+        echo render($res, 'page.tpl');
     }
 
     public function actionCounter () {
@@ -26,4 +26,5 @@ class PageController {
         echo json_encode ($res);
         // echo json_encode(['cnt' => 1009889]);
     }
+
 }

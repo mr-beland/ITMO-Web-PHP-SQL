@@ -13,3 +13,8 @@ body {
     border-radius: 5px;
     display: inline-flex;
 }
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
